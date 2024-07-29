@@ -60,6 +60,8 @@ def adaptive_mean(im, sm, *argv, **kwargs):
         if arg in METHODS: 
             method = arg 
 
+    im_r = im[:, :, 0] 
+
 
     im_size = np.shape(im_r)
 
