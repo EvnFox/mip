@@ -9,8 +9,6 @@ import time
 
 #threshold for creating binary image.
 THRESH = 2.5
-#props to be retrieved by region props. 
-PROPS = ['area'] 
 
 def add_zeros(x : np.array) -> np.array: 
     ## This function helps mat the scikit-image transform.Intergral_Image look like the matlab IntegralImage.
@@ -21,27 +19,8 @@ def add_zeros(x : np.array) -> np.array:
     return x
 
 
-def filter_mats(A : np.array, B : np.array) -> np.array: 
-    '''
-    Takes two matrices of the same shape and and returns a vector
-    containing all A[i][j] with A[i][j] < B[i][j]
-    '''
-    if np.shape(A) != np.shape(B): 
-        print("shape mismatch, ensure A and B have the same Shape")
-        return 1
-    x = list()
-    for i in range(np.shape(A)[0]-1):
-        for j in range(np.shape(A)[1]-1):
-            if A[i][j].dtype == 'StrDType': 
-                continue
-            if A[i][j] < B[i][j]:
-                x.append(A[i][j])
-
-    return np.array(x)
-
 
 def adaptive_mean(im, sm, *argv, **kwargs): 
-    channel = 'r' 
     method = 'edge' 
 
     #add error handeling. sm would be better than im.
@@ -77,22 +56,7 @@ def adaptive_mean(im, sm, *argv, **kwargs):
     ret = (im_sum/mask_sum ) * sm
     return ret
 
-#def remove_edge(im : np.array, sm : np.array) -> np.array:
-   # ind = np.array([])
 
-   # labels, n = measure.label(im, connectivity=2, return_num=True)
-
-  #  p_area = np.zeros(n)
-  #  for i in range(n): 
-  #      p_area[i] = sum([x if x == i else 0 for x in labels ])
-
-
-
-def particle_props(im : np.array, intensity_im : np.array ) -> pd.DataFrame: 
-    label_img = measure.label(im, connectivity=2)
-    regions = measure.regionprops_table(label_img, intensity_image=intensity_im, properties=PROPS)
-    df = pd.DataFrame(regions) 
-    return df, regions
 
 
 if __name__ == "__main__": 
@@ -110,13 +74,13 @@ if __name__ == "__main__":
 
 
 #get adapative mean
-    im_mean_r = adaptive_mean(im0, sm, 'r', 'edge')
+    im_mean_r = adaptive_mean(im0, sm)
   
 
 # get binary image
     im = THRESH*im_mean_r < im0[:,:,0]
-    im = morphology.binary_opening(im)
-    im = morphology.remove_small_objects(im, 5, connectivity=2)
+    #im = morphology.binary_opening(im)
+    #im = morphology.remove_small_objects(im, 5, connectivity=2)
 
     print(im.sum())
    # im = morphology.remove_small_holes(im)
