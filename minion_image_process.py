@@ -21,25 +21,6 @@ def add_zeros(x : np.array) -> np.array:
     return x
 
 
-def filter_mats(A : np.array, B : np.array) -> np.array: 
-    '''
-    Takes two matrices of the same shape and and returns a vector
-    containing all A[i][j] with A[i][j] < B[i][j]
-    '''
-    if np.shape(A) != np.shape(B): 
-        print("shape mismatch, ensure A and B have the same Shape")
-        return 1
-    x = list()
-    for i in range(np.shape(A)[0]-1):
-        for j in range(np.shape(A)[1]-1):
-            if A[i][j].dtype == 'StrDType': 
-                continue
-            if A[i][j] < B[i][j]:
-                x.append(A[i][j])
-
-    return np.array(x)
-
-
 def adaptive_mean(im, sm, *argv, **kwargs): 
     channel = 'r' 
     method = 'edge' 
