@@ -93,7 +93,7 @@ if __name__ == "__main__":
     start_time = time.time()
 
 # Get image and static mask
-    pth = "minion_pics/002-001-2023-11-27_17-37-00_IMG-TLP.jpg"
+    pth = "002-001-2023-11-27_17-37-00_IMG-TLP.jpg"
     sm = np.array(Image.open('static_mask.png'))
     im0 = np.array(Image.open(pth))
     sm = sm.astype('uint8')
