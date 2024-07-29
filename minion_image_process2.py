@@ -118,7 +118,7 @@ if __name__ == "__main__":
     im = morphology.binary_opening(im)
     im = morphology.remove_small_objects(im, 5, connectivity=2)
 
-    print(im.sum)
+    print(im.sum())
    # im = morphology.remove_small_holes(im)
 
 #img = plt.imshow(im, cmap='gray', vmin=0, vmax=1)
