@@ -5,7 +5,6 @@ from skimage import transform, measure, morphology
 import pandas as pd
 import warnings
 import numpy as np 
-import matplotlib.pyplot as plt 
 import time 
 
 #threshold for creating binary image.
