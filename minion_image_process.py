@@ -66,8 +66,8 @@ def adaptive_mean(im, sm, *argv, **kwargs):
     mask_sum = int_mask[nbhd_size[0]:, nbhd_size[1]:] + int_mask[0:im_size[0], 0:im_size[1] ] - int_mask[0:im_size[0], nbhd_size[1]:] - int_mask[nbhd_size[0]:, 0:im_size[1]]
 
 
-    with warnings.catch_warnings(action="ignore"): #ignore divide by zero waringing. 
-       ret = (im_sum/mask_sum ) * sm
+
+    ret = (im_sum/mask_sum ) * sm
     return ret
 
 def remove_edge(im : np.array, sm : np.array) -> np.array:
