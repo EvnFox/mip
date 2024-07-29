@@ -59,15 +59,7 @@ def adaptive_mean(im, sm, *argv, **kwargs):
             channel = arg.lower()
         if arg in METHODS: 
             method = arg 
-    
 
-    match channel:
-        case 'r': 
-            im_r = im[:, :, 0] 
-        case 'g': 
-            im_r = im[:, :, 1] 
-        case 'b': 
-            im_r = im[:, :, 2] 
 
     im_size = np.shape(im_r)
 
@@ -124,9 +116,7 @@ if __name__ == "__main__":
 
 #get adapative mean
     im_mean_r = adaptive_mean(im0, sm, 'r', 'edge')
-    im_mean_g = adaptive_mean(im0, sm, 'g', 'edge')
-    im_mean_b = adaptive_mean(im0, sm, 'b', 'edge')
-
+  
 
 # get binary image
     im = THRESH*im_mean_r < im0[:,:,0]
