@@ -20,7 +20,7 @@ if __name__ == "__main__":
 #apply static mask to image. 
     im1 = im0[:,:,0]*sm
   
-    im = im1 > 100
+    im = im1 > 75
     im = im.astype('uint8')
 # get binary image
     #im = morphology.binary_opening(im)
