@@ -58,8 +58,14 @@ def adaptive_mean(im, sm, *argv, **kwargs):
             channel = arg.lower()
         if arg in METHODS: 
             method = arg 
+    
+    if channel == 'r': 
+        im_r = im[:,:,0] 
+    elif channel == 'g': 
+        im_r = im[:,:,1] 
+    else: 
+        im_r = im[:,:,2]
 
-    im_r = im[:, :, 0] 
 
 
     im_size = np.shape(im_r)
