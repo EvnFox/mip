@@ -1,7 +1,7 @@
 import numpy as np 
 from skimage import transform, measure, morphology
 import pandas as pd
-import warnings
+#import warnings
 import os
 from PIL import Image 
 import cv2 as cv
@@ -35,23 +35,6 @@ def filter_mats(A : np.array, B : np.array) -> np.array:
 
     return np.array(x)
 
-def binerize(A : np.array, B : np.array) -> np.array: 
-    """
-    Takes two matrices A,B, of the same shape and returns a binary matrix C of the same size 
-    where C[i][j] = 1 if A[i][j] > B[i][j] and C[i][j] =0 otherwise. 
-    """
-    if np.shape(A) != np.shape(B): 
-        print("shape mismatch, ensure A and B have the same Shape")
-        return 1
-    C= np.zeros(np.shape(A))
-    for i in range(np.shape(A)[0]-1):
-        for j in range(np.shape(A)[1]-1):
-            if A[i][j] > B[i][j]: 
-                C[i][j] = 1
-            else: 
-                C[i][j] = 0
-
-    return C
 
 
 def adaptive_mean(im, sm, *argv, **kwargs): 
@@ -107,8 +90,7 @@ def adaptive_mean(im, sm, *argv, **kwargs):
     mask_sum = int_mask[nbhd_size[0]:, nbhd_size[1]:] + int_mask[0:im_size[0], 0:im_size[1] ] - int_mask[0:im_size[0], nbhd_size[1]:] - int_mask[nbhd_size[0]:, 0:im_size[1]]
 
 
-    with warnings.catch_warnings(action="ignore"):
-       ret = (im_sum/mask_sum ) * sm
+    ret = (im_sum/mask_sum ) * sm
     return ret
 
 
