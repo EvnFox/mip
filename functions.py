@@ -3,7 +3,6 @@ from skimage import transform, measure, morphology
 import pandas as pd
 #import warnings
 import os
-from PIL import Image 
 import cv2 as cv
 import matplotlib.pyplot as plt
 
