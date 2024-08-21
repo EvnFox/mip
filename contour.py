@@ -1,7 +1,7 @@
 from PIL import Image 
 import numpy as np 
-import matplotlib.pyplot as plt 
-from skimage import morphology
+#import matplotlib.pyplot as plt 
+#from skimage import morphology
 import functions as fns
 import time 
 import os
@@ -9,13 +9,13 @@ import os
 import cv2 as cv
 
 
-from IPython import get_ipython
-get_ipython().run_line_magic('matplotlib', 'tk')
+#from IPython import get_ipython
+#get_ipython().run_line_magic('matplotlib', 'tk')
 
-THRESH = 1.5
+THRESH = 2.5
 
 PROPS =['bbox', 'area_bbox', 'area']
-
+st = time.time()
 
 # Get image and static mask
 #092-011-2023-11-28_09-02-49_IMG-FIN
@@ -43,6 +43,9 @@ df, regions_dict = fns.particle_props(im, im0, PROPS=PROPS)
 prc = im0.copy()
 contours, hierarchy = cv.findContours(im.astype('uint8'), cv.RETR_EXTERNAL , cv.CHAIN_APPROX_NONE)
 cv.drawContours(prc, contours, -1, (250, 0, 0), 2)
+print(time.time() -st) 
 
 cv.imwrite('test.png', prc) 
+print(time.time()-st)
+
 
