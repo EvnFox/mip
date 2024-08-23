@@ -13,9 +13,6 @@ import cv2
 import matplotlib.pyplot as plt
 import glob, os, sys
 
-from IPython import get_ipython
-get_ipython().run_line_magic('matplotlib', 'tk')
-
 import time
 
 st = time.time()
@@ -178,8 +175,5 @@ img_rgb = cv2.cvtColor(contour_img, cv2.COLOR_BGR2RGB)
 #using Matplotlib, ensuring scaling is from 0 to 255
 
 print(time.time() - st)
-plt.figure
-plt.imshow(img_rgb, vmin=0, vmax=255)
-plt.axis('off')
-plt.show()
-# cv2.imwrite('081-001_CD.jpg',contour_img)
+
+cv2.imwrite('081-001_CD.jpg',contour_img)
